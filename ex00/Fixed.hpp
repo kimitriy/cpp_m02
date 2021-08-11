@@ -36,29 +36,24 @@
 class	Fixed
 {
 	private:
-		int					fpValue;
-		static const int	fb = 8;
 		
-		// typedef void	(Karen::*fPntr)( void );
-		// fPntr			fArr[4];
+		int					m_fpValue;
+		static const int	m_fb = 8;
 		
-		//private m-methods
-		void			debug( void );
-		void			info( void );
-		void			warning( void );
-		void			error( void );
 	public:
 		//default constructor
 		Fixed( void );
 
 		//copy constructor
+		Fixed( const Fixed &other );
 
 		//assignation operator overload
-		
+		Fixed & operator= (const Fixed &other);
+
 		//destructor
 		~Fixed( void );
 		
-		//public m-method
+		//public m-methods
 		int				getRawBits( void );
 		void			setRawBits( int const raw );
 };

@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 # include <string>
 
 # define RESET "\033[0m"
@@ -37,10 +38,13 @@ class	Fixed
 {
 	private:
 		
-		int					m_fpValue;
+		int					m_vault;
 		static const int	m_fb = 8;
 		
 	public:
+		//default constructor
+		Fixed( void );
+		
 		//int constructor
 		Fixed( int val );
 
@@ -54,14 +58,16 @@ class	Fixed
 		~Fixed( void );
 		
 		//assignation operator overload
-		Fixed & operator= (const Fixed &other);
-
-		//bitwise shift operator overload
-		int	& operator<< ( int &value );
+		Fixed& operator = ( const Fixed& other );
 
 		//public m-methods
-		int				getRawBits( void );
+		int				getRawBits( void ) const;
 		void			setRawBits( int const raw );
+		float			toFloat( void ) const;
+		int				toInt( void ) const;
 };
+
+//<< operator overload
+std::ostream& operator << ( std::ostream& out, const Fixed& fn );
 
 #endif

@@ -16,12 +16,13 @@ HEADER		= 	Fixed.hpp \
 
 SRC 		= 	main.cpp \
 				Fixed.cpp \
+				utils.cpp \
 
 OBJS		= ${SRC:.cpp=.o}
 
 CPP			= clang++
 
-FLAGS		= -g -Wall -Wextra -Werror -std=c++98
+FLAGS		= -Wall -Wextra -Werror -std=c++98
 
 RM			= rm -f
 

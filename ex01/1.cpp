@@ -1,6 +1,7 @@
 #include <iostream>
 #include <inttypes.h>
 #include <bitset>
+#include <tgmath.h>
 #include <cstdlib> // for atof(3)
 
 void floatToBinary(float f, std::string& str)
@@ -153,26 +154,37 @@ int main()
 	std::cout << std::endl;
 	*/
 
-	float f = 42.42;
+	float f = 42.40512;
 	
 	std::string str;
 	floatToBinary(f, str);
 	std::cout << f << " : " << str << std::endl;
 
-	std::cout << "1" << " :     " << std::bitset<32>(1) << std::endl;
+	int	vault;
+	vault = roundf(f * (1 << 8));
+
+	std::cout << "vault_dec: " << vault << std::endl;
+	std::cout << "vault_bin: " << std::bitset<32>(vault) << std::endl;
+
+	f = static_cast<float>(vault) / static_cast<float>(1 << 8);
+	std::cout << "float_dec:" << f << std::endl;
+	floatToBinary(f, str);
+	std::cout << "float_bin:" << str << std::endl;
+
+	// std::cout << "1" << " :     " << std::bitset<32>(1) << std::endl;
 	
-	int	sh_1;
-	sh_1 = 1 << 8;
-	std::cout << sh_1 << " :   " << std::bitset<32>(sh_1) << std::endl;
+	// int	sh_1;
+	// sh_1 = 1 << 8;
+	// std::cout << sh_1 << " :   " << std::bitset<32>(sh_1) << std::endl;
 
-	int		i;
-	i = f * (1 << 8);
-	std::cout << i << " : " << std::bitset<32>(i) << std::endl;
+	// int		i;
+	// i = f * (1 << 8);
+	// std::cout << i << " : " << std::bitset<32>(i) << std::endl;
 
-	float f2;
-	f2 = i >> 8;
-	floatToBinary(f2, str);
-	std::cout << f2 << " : " << str << std::endl;
+	// float f2;
+	// f2 = i >> 8;
+	// floatToBinary(f2, str);
+	// std::cout << f2 << " : " << str << std::endl;
 
 	// std::cout << " " << a << " : " << std::bitset<32>(a) << std::endl;
 	// std::cout << b << " : " << std::bitset<32>(b) << std::endl;

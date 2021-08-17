@@ -24,8 +24,8 @@ Fixed::Fixed( float val )
 //copy constructor
 Fixed::Fixed( const Fixed &other )
 {
-	this->m_vault = other.m_vault;
 	std::cout << FGRND_R_PURPLE << "Copy constructor called" << RESET << std::endl;
+	*this = other;
 }
 
 //destructor

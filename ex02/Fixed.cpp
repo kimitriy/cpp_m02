@@ -10,7 +10,7 @@ Fixed::Fixed( void )
 //int constructor
 Fixed::Fixed( int val )
 {
-	m_vault = roundf(val * (1 << m_fb));
+	m_vault = val * (1 << m_fb);
 	std::cout << FGRND_R_CYAN << "Int constructor called" << RESET << std::endl;
 }
 
@@ -24,8 +24,8 @@ Fixed::Fixed( float val )
 //copy constructor
 Fixed::Fixed( const Fixed &other )
 {
-	this->m_vault = other.m_vault;
 	std::cout << FGRND_R_PURPLE << "Copy constructor called" << RESET << std::endl;
+	*this = other;
 }
 
 //destructor
@@ -35,17 +35,51 @@ Fixed::~Fixed( void )
 }
 
 //assignation operator overload
-Fixed& Fixed::operator = ( const Fixed& other )
+Fixed& Fixed::operator= ( const Fixed& other )
 {
 	this->m_vault = other.m_vault;
 	std::cout << FGRND_R_BLUE << "Assignation operator called" << RESET << std::endl;
 	return ( *this );
 }
 
+//pre-increment operator overload
+Fixed& Fixed::operator++ ( void )
+{
+	float tmp = this->toFloat();
+	tmp += 1;
+	this->setRawBits(roundf(tmp * (1 << m_fb)));
+	return ( *this );
+}
+
+//post-increment operator overload
+const Fixed Fixed::operator++ ( int )
+{
+	Fixed tmp(*this);
+	++*this;
+	return ( tmp );
+}
+
+//pre-decrement operator overload
+Fixed& Fixed::operator-- ( void )
+{
+	float tmp = this->toFloat();
+	tmp -= 1;
+	this->setRawBits(roundf(tmp * (1 << m_fb)));
+	return ( *this );
+}
+
+//post-decrement operator overload
+const Fixed Fixed::operator-- ( int )
+{
+	Fixed tmp(*this);
+	--*this;
+	return ( tmp );
+}
+
 //public m-methods
 int		Fixed::getRawBits( void ) const
 {
-	std::cout << FGRND_R_GREEN << "getRawBits member function called" << RESET << std::endl;
+	// std::cout << FGRND_R_GREEN << "getRawBits member function called" << RESET << std::endl;
 	return ( m_vault );
 }
 
@@ -67,4 +101,37 @@ int		Fixed::toInt( void ) const
 	f = static_cast<float>(m_vault) / static_cast<float>(1 << m_fb);
 	int		d = static_cast<int>(f);
 	return (d);
+}
+
+//static public m-methods min && max
+Fixed&	Fixed::min( Fixed& f1, Fixed& f2 )
+{
+	if ( f1 <= f2 )
+		return ( f1 );
+	else
+		return ( f2 );
+}
+
+const Fixed&	Fixed::min( const Fixed& f1, const Fixed& f2 )
+{
+	if ( f1 <= f2 )
+		return ( f1 );
+	else
+		return ( f2 );
+}
+
+Fixed&	Fixed::max( Fixed& f1, Fixed& f2 )
+{
+	if ( f1 >= f2 )
+		return ( f1 );
+	else
+		return ( f2 );
+}
+
+const Fixed&	Fixed::max( const Fixed& f1, const Fixed& f2 )
+{
+	if ( f1 >= f2 )
+		return ( f1 );
+	else
+		return ( f2 );
 }

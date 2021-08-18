@@ -4,41 +4,41 @@
 Fixed::Fixed( void )
 	: m_vault(0)
 {
-	std::cout << FGRND_R_RED << "Default constructor called" << RESET << std::endl;
+	// std::cout << FGRND_R_RED << "Default constructor called" << RESET << std::endl;
 }
 
 //int constructor
 Fixed::Fixed( int val )
 {
 	m_vault = val * (1 << m_fb);
-	std::cout << FGRND_R_CYAN << "Int constructor called" << RESET << std::endl;
+	// std::cout << FGRND_R_CYAN << "Int constructor called" << RESET << std::endl;
 }
 
 //float constructor
 Fixed::Fixed( float val )
 {
 	m_vault = roundf(val * (1 << m_fb));
-	std::cout << FGRND_R_GREEN << "Float constructor called" << RESET << std::endl;
+	// std::cout << FGRND_R_GREEN << "Float constructor called" << RESET << std::endl;
 }
 
 //copy constructor
 Fixed::Fixed( const Fixed &other )
 {
-	std::cout << FGRND_R_PURPLE << "Copy constructor called" << RESET << std::endl;
+	// std::cout << FGRND_R_PURPLE << "Copy constructor called" << RESET << std::endl;
 	*this = other;
 }
 
 //destructor
 Fixed::~Fixed( void )
 {
-	std::cout << FGRND_R_YELLOW << "Destructor called" << RESET << std::endl;
+	// std::cout << FGRND_R_YELLOW << "Destructor called" << RESET << std::endl;
 }
 
 //assignation operator overload
 Fixed& Fixed::operator= ( const Fixed& other )
 {
 	this->m_vault = other.m_vault;
-	std::cout << FGRND_R_BLUE << "Assignation operator called" << RESET << std::endl;
+	// std::cout << FGRND_R_BLUE << "Assignation operator called" << RESET << std::endl;
 	return ( *this );
 }
 
@@ -46,7 +46,7 @@ Fixed& Fixed::operator= ( const Fixed& other )
 Fixed& Fixed::operator++ ( void )
 {
 	float tmp = this->toFloat();
-	tmp += 1;
+	tmp += pow(2,-m_fb);
 	this->setRawBits(roundf(tmp * (1 << m_fb)));
 	return ( *this );
 }
@@ -63,7 +63,7 @@ const Fixed Fixed::operator++ ( int )
 Fixed& Fixed::operator-- ( void )
 {
 	float tmp = this->toFloat();
-	tmp -= 1;
+	tmp -= pow(2,-m_fb);
 	this->setRawBits(roundf(tmp * (1 << m_fb)));
 	return ( *this );
 }

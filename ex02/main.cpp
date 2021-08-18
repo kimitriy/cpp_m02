@@ -2,6 +2,7 @@
 
 int		main( void )
 {
+	/*
 	Fixed	a( 45 );
 	Fixed	b( -0.55f );
 
@@ -60,22 +61,23 @@ int		main( void )
 	
 	a--;
 	std::cout << "[post--]" << " float: " << a.toFloat() << " raw: " << a.getRawBits() << std::endl;
+	*/
 	
-	// Fixed const c( 42.42f );
-	// Fixed const d( b );
+	Fixed a;
+	Fixed b( Fixed( 5.05f ) * Fixed( 2 ) );
 
-	// a = Fixed( 1234.4321f );
-
-	// std::cout << FGRND_R_PURPLE << "a is " << FGRND_R_GREEN << a << RESET << std::endl;
-	// std::cout << FGRND_R_PURPLE << "b is " << FGRND_R_GREEN << b << RESET << std::endl;
-	// std::cout << FGRND_R_PURPLE << "c is " << FGRND_R_GREEN << c << RESET << std::endl;
-	// std::cout << FGRND_R_PURPLE << "d is " << FGRND_R_GREEN << d << RESET << std::endl;
-
-	// std::cout << FGRND_R_PURPLE << "a is " << FGRND_R_GREEN << a.toInt() << FGRND_R_PURPLE << " as integer" << RESET << std::endl;
-	// std::cout << FGRND_R_PURPLE << "b is " << FGRND_R_GREEN << b.toInt() << FGRND_R_PURPLE << " as integer" << RESET << std::endl;
-	// std::cout << FGRND_R_PURPLE << "c is " << FGRND_R_GREEN << c.toInt() << FGRND_R_PURPLE << " as integer" << RESET << std::endl;
-	// std::cout << FGRND_R_PURPLE << "d is " << FGRND_R_GREEN << d.toInt() << FGRND_R_PURPLE << " as integer" << RESET << std::endl;
-
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	a = Fixed(1);
+	while (a >= 0)
+	{
+		std::cout << a-- << std::endl;
+	}
 
 	return (0);
 }

@@ -54,7 +54,7 @@ class	Fixed
 		~Fixed( void );
 		
 		//public m-methods
-		int				getRawBits( void );
+		int				getRawBits( void ) const;
 		void			setRawBits( int const raw );
 };
 

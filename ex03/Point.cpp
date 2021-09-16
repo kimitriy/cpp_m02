@@ -26,25 +26,26 @@ Point::~Point( void ) {};
 //assignation operator overload
 Point& Point::operator= ( const Point& other )
 {
-	this->m_X = other.m_X;
-	this->m_Y = other.m_Y;
+	const_cast<Fixed&>(this->m_X) = other.getX();
+	const_cast<Fixed&>(this->m_Y) = other.getY();
+
 	return ( *this );
 }
 
 //setter
-void	Point::setPoint( Fixed x, Fixed y )
-{
-	m_X = x;
-	m_Y = y;
-}
+// void	Point::setPoint( Fixed x, Fixed y )
+// {
+// 	m_X = x;
+// 	m_Y = y;
+// }
 
 //getter
-Fixed&	Point::getX( void )
+const Fixed &	Point::getX( void ) const
 {
 	return ( m_X );
 }
 
-Fixed&	Point::getY( void )
+const Fixed &	Point::getY( void ) const
 {
 	return ( m_Y );
 }

@@ -28,7 +28,7 @@ int		main( void )
 	if (tr.isPointInTriangle(test, tr))
 		std::cout << FGRND_R_GREEN << "The test point is in the triangle" << RESET << std::endl;
 	else
-		std::cout << FGRND_R_GREEN << "The test point is not in the triangle" << RESET << std::endl;
+		std::cout << FGRND_R_RED << "The test point is not in the triangle" << RESET << std::endl;
 
 	return (0);
 }

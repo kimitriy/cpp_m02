@@ -6,8 +6,8 @@
 class	Point
 {
 	private:
-		Fixed	m_X;
-		Fixed	m_Y;
+		Fixed const	m_X;
+		Fixed const	m_Y;
 	public:
 		//default constructor
 		Point( void );
@@ -25,11 +25,11 @@ class	Point
 		Point& operator= ( const Point& other );
 
 		//setter
-		void	setPoint( Fixed x, Fixed y );
+		// void	setPoint( Fixed x, Fixed y );
 
 		//getter
-		Fixed&	getX( void );
-		Fixed&	getY( void );
+		const Fixed &	getX( void ) const;
+		const Fixed &	getY( void ) const;
 };
 
 #endif
